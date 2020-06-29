@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Weather Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Container for Search Terms -->
+    <div class="container">
+        <div class="input-group mb-3">
+            <input id="city" type="text" class="form-control" placeholder="Name of City" aria-label="Search"
+                aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button id="search" class="btn btn-primary" type="button"><span
+                        class="glyphicon glyphicon-search">Search</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Container for cards -->
+    <div class="container weather-cards">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+                <h5 id="date" class="card-title"></h5>
+                <p id="temp" class="card-text"></p>
+                <p id="humidity" class="card-text"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>
