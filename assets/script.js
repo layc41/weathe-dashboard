@@ -16,28 +16,28 @@ var citySubmitHandler = function (event)
 
   if (city) 
   {
-    getWeather(city);
+    get5Weather(city);
     cityInputEl.value ='';
   }
   // add local storage here 
 };
 
 // function to fetch weather data
-var getWeather = function(city)
+var get5Weather = function(city)
 {
   var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=40eb0ca1d6631653dada9f4a96226113";
   
   fetch(apiURL).then(function(response)
   {
-    console.log(response);
+    // console.log(response);
 
     if (response.ok)
     {
       response.json().then(function (data)
       {
-        displayWeatherCards(data, city);
-        bigDash(data, city);
-        console.log(list[0].dt_text);
+        // console.log(data)
+        displayWeatherCards(data);
+        console.log(data.list.weather.main[1]);
       })
     }
     else
@@ -50,6 +50,34 @@ var getWeather = function(city)
       alert("Unable to connect to Weather App");
     });
 }; 
+
+var getTodayWeather = function(city)
+{
+  var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=&appid=40eb0ca1d6631653dada9f4a96226113"
+
+  fetch(apiURL).then(function(response)
+  {
+
+    if (response.ok)
+    {
+      response.json().then(function (data)
+      {
+        // console.log(data)
+        bigDash(data);
+      })
+    }
+    else
+    {
+      alert("Error: " + response.statusText);
+    }
+  })
+    .catch(function(error)
+    {
+      alert("Unable to connect to Weather App");
+    });
+
+}
+
 
 // Big Dash for Today's Weather
 var bigDash = function()
@@ -80,52 +108,52 @@ var bigDash = function()
 
 
 // display cards
-var displayWeatherCards = function(list, city) 
+var displayWeatherCards = function(data) 
 {
 
-  /* create loop for the 5 days after today for cast
-   for ( var i = 1; i < 5; i++) 
+  //create loop for the 5 days after today for cast
+   for ( var i = 0; i < 40; i += 8)
    {
     // pull date from json and then covert time to mm/dd/yy format w/ moment
-    var cityDate = list[].0.dt_txt
+    var cityDate = data.list[i].dt_txt.split(" ")[0]
     console.log(cityDate);
     var dateEl = document.createElement("h5");
     dateEl.classList = "card-title"
     dateEl.textContent = cityDate
 
-    // pull weather from json and create image
-    var cityWeather = 
-    console.log(cityWeather)
-    // create if statements for images?
-    var weatherEl = document.createElement("p");
-    weatherEl.classList = "card-text"
+    // // pull weather from json and create image
+    // var cityWeather = data.list[i].weather[1];
+    // console.log(cityWeather)
+    // // create if statements for images?
+    // var weatherEl = document.createElement("p");
+    // weatherEl.classList = "card-text"
 
-    // pull temp from json 
-    var cityTemp = 'Temp: ' + weather
-    console.log(cityTemp);
-    var tempEl = document.createElement("p");
-    tempEl.classList = "card-text"
-    tempEl.textContent = cityTemp
+    // // pull temp from json 
+    // var cityTemp = 'Temp: ' + data.list[i].
+    // console.log(cityTemp);
+    // var tempEl = document.createElement("p");
+    // tempEl.classList = "card-text"
+    // tempEl.textContent = cityTemp
 
-    // pull humidity from json
-    var cityHumidity = "Humidity: " + weather[]
-    console.log(cityHumidity;
-    var humidityEl = document.createElement("p");
-    humidityEl.classList = "card-text"
-    humidityEl.textContent = cityHumidity
+    // // pull humidity from json
+    // var cityHumidity = "Humidity: " + weather[]
+    // console.log(cityHumidity;
+    // var humidityEl = document.createElement("p");
+    // humidityEl.classList = "card-text"
+    // humidityEl.textContent = cityHumidity
 
-    // create card div container 
-    var weatherCard = document.createElement("div");
-    weatherCard.classList = "card text-white bg-info mb-3"
+    // // create card div container 
+    // var weatherCard = document.createElement("div");
+    // weatherCard.classList = "card text-white bg-info mb-3"
 
-    // append elements to div container 
-    weatherCard.appendChild(dateEl);
-    weatherCard.appendChild(weatherEl);
-    weatherCard.appendChild(tempEl);
-    weatherCard.appendChild(humidityEl);
+    // // append elements to div container 
+    // weatherCard.appendChild(dateEl);
+    // weatherCard.appendChild(weatherEl);
+    // weatherCard.appendChild(tempEl);
+    // weatherCard.appendChild(humidityEl);
 
-    // append container to dom
-    weatherCards.appendChild(weatherCard);
+    // // append container to dom
+    // weatherCards.appendChild(weatherCard);
 
    }
 
@@ -133,7 +161,7 @@ var displayWeatherCards = function(list, city)
   // clears search after pulling up information
   cityInputEl.textContent = "";
 
-  */
+
 
 }; 
 
