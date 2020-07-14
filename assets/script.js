@@ -15,7 +15,7 @@ var citySubmitHandler = function (event)
   var city = cityInputEl.value.trim();
 
   localStorage.setItem(uniqueId, city);
-  uniqueId++;
+  ;
 
   if (city) 
   {
@@ -30,8 +30,8 @@ var citySubmitHandler = function (event)
 // function to append last searches
 var lastSearch = function () 
 {
-    var lastCity = localStorage.getItem(key);
-
+    var lastCity = localStorage.getItem(uniqueId);
+    uniqueId++;
     console.log("city", lastCity);
 
     var lastSearch = document.createElement("li");
